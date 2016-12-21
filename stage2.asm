@@ -5,7 +5,7 @@ BITS 16
 jmp main
 
 %include "gdt.inc"
-
+%include "functions.asm"
 main:
 
 	cli				; clear interrupts
@@ -16,6 +16,9 @@ main:
 	mov	ss, ax
 	mov	sp, 0xFFFF
 	sti		
+	
+	call Enable_A20			; Just Confirm that A20 is enabled
+					; to test on a Real PC.
 
 	call GDT_install
 	
